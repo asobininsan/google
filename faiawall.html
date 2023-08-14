@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Googleファイアーウォール</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #progress-container {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        #progress-bar {
+            height: 20px;
+            width: 0;
+            background-color: #4CAF50;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h3>実行しています・・・</h3>
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+        
+    </div>
+<div id="message"></div>
+
+    <script>
+        function simulateProgress() {
+            const progressBar = document.getElementById("progress-bar");
+            const message = document.getElementById("message");
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 6; // ランダムに進捗を増やす
+                progressBar.style.width = progress + "%";
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    message.textContent = "成功しました！";
+
+                    // 3秒後にタブを閉じる
+                    setTimeout(() => {
+                        window.close();
+                    }, 3000);
+                }
+            }, 200); // 200ミリ秒ごとに進捗を更新
+        }
+
+        // ページがロードされたときに進捗を開始
+        window.onload = simulateProgress;
+    </script>
+</body>
+</html>
